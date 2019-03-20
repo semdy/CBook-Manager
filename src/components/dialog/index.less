@@ -1,0 +1,64 @@
+@import "../../styles/mixins/common";
+@import "../../styles/mixins/hairline";
+
+.dialog {
+  width: 85%;
+  font-size: 16px;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: #fff;
+
+  &__header {
+    font-weight: 500;
+    padding-top: 25px;
+    text-align: center;
+
+    &--isolated {
+      padding: 25px 0;
+    }
+  }
+
+  &__message {
+    padding: 25px;
+    font-size: 14px;
+    line-height: 1.5;
+    max-height: 60vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    &--has-title {
+      padding-top: 12px;
+      color: @color-gray-darker;
+    }
+  }
+
+  &__footer {
+    display: flex;
+  }
+
+  &__button {
+    flex: 1;
+  }
+
+  &__confirm,
+  &__cancel {
+    border: 0 !important;
+  }
+
+  &__confirm {
+    &,
+    &:active {
+      color: @color-blue !important;
+    }
+  }
+
+  &-bounce-enter {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.7);
+  }
+
+  &-bounce-leave-active {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.9);
+  }
+}

@@ -1,0 +1,143 @@
+<style lang="less">
+  @import "styles/iconfont";
+  @import "styles/font";
+  @import "styles/animation";
+  @import "styles/hairline";
+  @import "styles/flex";
+
+  // global style for app
+  page {
+    background-color: #fff;
+    color: #444;
+    font-size: 14px;
+    line-height: 1.42;
+    font-family: -apple-system-font, BlinkMacSystemFont, "Segoe UI", "PingFang SC", 'Helvetica Neue', Helvetica, 'Microsoft YaHei', sans-serif;
+  }
+
+  page, view, text, scroll-view, input, textarea, button, form, image {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  image {
+    vertical-align: top;
+  }
+
+  .input-placeholder {
+    color: #999;
+  }
+
+  .iconfont {
+    font-size: 16px;
+    line-height: 1;
+    font-weight: normal;
+  }
+
+  .spliter {
+    height: 10px;
+    background-color: #f5f5f5;
+  }
+
+  .c-f90 {
+    color: #f90;
+  }
+
+  .abs-center {
+    .abs-center();
+  }
+
+  .share-button {
+    display: inline-block;
+    background: none;
+    padding: 0;
+    line-height: 1;
+    font-size: inherit;
+    color: inherit;
+    border-radius: 0;
+
+    &::after {
+      border: none;
+    }
+  }
+
+  // global style for panel component
+  .panel-title {
+    font-size: 15px;
+    font-weight: bold;
+
+    &:after {
+      .hairline-bottom();
+    }
+  }
+
+  .panel-footer {
+    &:after {
+      .hairline-top();
+    }
+  }
+
+  .panel-title,
+  .panel-footer {
+    position: relative;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+</style>
+
+<script>
+import './polyfill'
+import wepy from 'wepy'
+import 'wepy-async-function'
+
+export default class extends wepy.app {
+  config = {
+    pages: [
+      'pages/manager/index'
+    ],
+    window: {
+      navigationBarBackgroundColor: '#fff',
+      navigationBarTextStyle: 'black',
+      navigationBarTitleText: '星月童书管理',
+      backgroundColor: '#f7f7f7',
+      backgroundTextStyle: 'dark',
+      enablePullDownRefresh: false
+    },
+    networkTimeout: {
+      request: 60000,
+      connectSocket: 60000,
+      uploadFile: 60000,
+      downloadFile: 60000
+    },
+    debug: false
+  }
+
+  constructor () {
+    super()
+    this.use('requestfix')
+    this.use('promisify')
+  }
+
+  async onLaunch () {
+
+    const sys = await wepy.getSystemInfo()
+    const SDKVersion = parseFloat(sys.SDKVersion.replace(/\./g, ''))
+
+    if (SDKVersion < 223) {
+      wx.showModal({
+        content: '您当前版本的微信不能满足本小程序的运行要求，请升级!',
+        showCancel: false
+      })
+    }
+  }
+
+  sleep (s) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve()
+      }, s * 1000)
+    })
+  }
+}
+</script>

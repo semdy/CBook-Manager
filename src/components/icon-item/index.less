@@ -1,0 +1,22 @@
+@import "../../styles/mixins/common";
+
+.icon-item {
+  .flex-center();
+  flex-direction: column;
+  width: 100%;
+  padding: 8px 8px 10px;
+  white-space: nowrap;
+
+  &:active {
+    background-color: @color-active;
+  }
+
+  &.inline {
+    .inline-flex();
+    width: auto;
+  }
+
+  > icon {
+    margin-bottom: 3px;
+  }
+}

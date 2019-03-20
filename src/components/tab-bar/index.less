@@ -1,0 +1,27 @@
+@import "../../styles/mixins/common";
+
+.tabbar-wrap {
+  .flex();
+  border-width: .5px 0 0;
+  border-style: solid;
+  border-top-color: transparent;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.tabbar-item {
+  flex: 1;
+  .flex-center();
+  flex-direction: column;
+  padding: 2px 0;
+
+  .icon {
+    margin-bottom: 2px;
+  }
+
+  > text {
+    font-size: 12px;
+  }
+}

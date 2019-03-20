@@ -1,0 +1,13 @@
+<view class="raty-wrap {{isReadonly ? 'readonly' : ''}} {{customClass}}" style="{{customStyle}}">
+  <block wx:for="{{max}}" wx:key="index">
+    <icon
+      class="raty-item"
+      size="{{size}}"
+      color="{{index < ratyIndex ? activeColor : color}}"
+      name="star"
+      data-index="{{index}}"
+      bindtap="change">
+    </icon>
+  </block>
+  <text class="raty-value" wx:if="{{isShowValue}}">{{value}}</text>
+</view>

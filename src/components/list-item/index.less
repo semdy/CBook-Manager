@@ -1,0 +1,34 @@
+@import "../../styles/mixins/common";
+@import "../../styles/mixins/hairline";
+
+.list-item {
+  padding-left: 15px;
+  background-color: #fff;
+
+  &, &-bd {
+    .flex-v-center();
+  }
+
+  &-bd {
+    position: relative;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-right: 15px;
+
+    &.bordered {
+      &:after {
+        .hairline-bottom();
+      }
+    }
+  }
+
+  &-bd, &-content {
+    flex: 1;
+  }
+
+  &.enabled {
+    &:active {
+      background-color: @color-active;
+    }
+  }
+}

@@ -1,0 +1,15 @@
+@import "../../styles/mixins/common";
+@import "../../styles/mixins/hairline";
+
+.list-item-group {
+  position: relative;
+  margin-bottom: 10px;
+
+  &:before {
+    .hairline-top(#ddd);
+  }
+
+  &:after {
+    .hairline-bottom(#ddd);
+  }
+}

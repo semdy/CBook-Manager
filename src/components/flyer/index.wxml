@@ -1,0 +1,10 @@
+<view
+  wx:if="{{show}}"
+  animation="{{animationData}}"
+  class="flyer {{useCss ? 'css-transition' : ''}} {{customClass}}"
+  style="left:{{startX}}px;top:{{startY}}px;{{customStyle}}"
+>
+  <view class="flyer-inner" animation="{{innerAnimationData}}">
+    <slot></slot>
+  </view>
+</view>

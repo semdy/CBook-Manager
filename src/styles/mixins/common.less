@@ -1,0 +1,40 @@
+@import "../var";
+@import "./flex";
+
+.word-break () {
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.word-nowrap () {
+  white-space: nowrap;
+}
+
+.light-font () {
+  font-family: 'SourceHanSansCN-Light';
+}
+
+.animation (@args) {
+  -webkit-animation: @args;
+  animation: @args;
+}
+
+.margin-auto () {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.abs-center () {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.g-gradient (@offset: 50%) {
+  background: linear-gradient(to right, @lgcolor, @gcolor @offset);
+}
+
+.g-darken-gradient (@offset: 50%) {
+  background: linear-gradient(to right, lighten(@lgcolor, 5%), darken(@gcolor, 5%) @offset);
+}

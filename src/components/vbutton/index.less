@@ -1,0 +1,150 @@
+@import "../../styles/mixins/common";
+
+.button {
+  position: relative;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  -webkit-text-size-adjust: 100%;
+
+  &::after {
+    content: " ";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    border: inherit;
+    border-color: @black;
+    background-color: @black;
+    border-radius: inherit; /* inherit parent's border radius */
+    transform: translate(-50%, -50%);
+  }
+
+  &:active::after {
+    opacity: .15;
+  }
+
+  &--unclickable::after {
+    display: none;
+  }
+
+  &--default {
+    color: @button-default-color;
+    background-color: @button-default-background-color;
+    border: 1px solid @button-default-border-color;
+  }
+
+  &--primary {
+    color: @button-primary-color;
+    background-color: @button-primary-background-color;
+    border: 1px solid @button-primary-border-color;
+  }
+
+  &--info {
+    color: @button-info-color;
+    background-color: @button-info-background-color;
+    border: 1px solid @button-info-border-color;
+  }
+
+  &--danger {
+    color: @button-danger-color;
+    background-color: @button-danger-background-color;
+    border: 1px solid @button-danger-border-color;
+  }
+
+  &--warning {
+    color: @button-warning-color;
+    background-color: @button-warning-background-color;
+    border: 1px solid @button-warning-border-color;
+  }
+
+  &--plain {
+    background-color: @white;
+
+    &.button--primary {
+      color: @button-primary-background-color;
+    }
+
+    &.button--danger {
+      color: @button-danger-background-color;
+    }
+
+    &.button--warning {
+      color: @button-warning-background-color;
+    }
+  }
+
+  &--large {
+    height: @large;
+    font-size: 16px;
+  }
+
+  &--normal {
+    height: @normal;
+    font-size: 14px;
+  }
+
+  &--small {
+    min-width: 60px;
+    height: @small;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12px;
+  }
+
+  &--mini {
+    min-width: 50px;
+    height: @mini;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-size: 10px;
+
+    & + .button--mini {
+      margin-left: 5px;
+    }
+  }
+
+  &--block {
+    width: 100%;
+    display: flex;
+  }
+
+  &--round {
+    border-radius: 10em;
+  }
+
+  &--square {
+    border-radius: 0;
+  }
+
+  &--disabled {
+    opacity: .5;
+  }
+
+  icon {
+    margin-right: 3px;
+  }
+}
+
+
+.dialog {
+  &__confirm,
+  &__cancel {
+    border: 0 !important;
+  }
+
+  &__confirm {
+    &,
+    &:active {
+      color: @color-blue !important;
+    }
+  }
+}

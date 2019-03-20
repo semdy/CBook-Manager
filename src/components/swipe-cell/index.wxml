@@ -1,0 +1,23 @@
+<view
+  class="swipe-cell {{customClass}}"
+  data-key="cell"
+  bindtap="onClick"
+  bindtouchstart="startDrag"
+  bindtouchmove="onDrag"
+  bindtouchend="endDrag"
+  bindtouchcancel="endDrag"
+  style="{{customStyle}}"
+>
+  <view
+    style="{{ wrapperStyle }}"
+    bindtransitionend="onTransitionend"
+  >
+    <view wx:if="{{ leftWidth }}" class="swipe-cell__left" data-key="left" catch:tap="onClick">
+      <slot name="left" />
+    </view>
+    <slot />
+    <view wx:if="{{ rightWidth }}" class="swipe-cell__right" data-key="right" catch:tap="onClick">
+      <slot name="right" />
+    </view>
+  </view>
+</view>

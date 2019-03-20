@@ -1,0 +1,45 @@
+@import "../../styles/mixins/common";
+@import "../form-item/index";
+
+picker {
+  flex: 1;
+  width: 100%;
+
+  &.disabled {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+}
+
+.picker {
+  flex: 1;
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 14px;
+  box-sizing: border-box;
+  .flex-v-center();
+  justify-content: space-between;
+
+  &.large {
+    height: @large;
+    font-size: 16px;
+  }
+
+  &.normal {
+    height: @normal;
+  }
+
+  &.small {
+    height: @small;
+  }
+
+  .placeholder {
+    color: #999;
+    white-space: nowrap;
+  }
+
+  .picker-actions {
+    white-space: nowrap;
+    margin-left: 5px;
+  }
+}

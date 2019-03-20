@@ -1,0 +1,6 @@
+<view class="icon-item {{isInline ? 'inline' : ''}} {{customClass}}" style="{{customStyle}}">
+  <icon size="{{iconSize}}" type="{{iconType}}" name="{{icon}}"></icon>
+  <view>
+    <slot></slot>
+  </view>
+</view>

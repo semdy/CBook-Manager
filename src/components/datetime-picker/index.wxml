@@ -1,0 +1,23 @@
+<picker
+  mode="{{mode === 'datetime' ? 'multiSelector' : mode}}"
+  start="{{start}}"
+  end="{{end}}"
+  fields="{{fields}}"
+  value="{{range}}"
+  bindchange="change"
+  bindcolumnchange="columnChange"
+  bindcancel="cancel"
+  range="{{rangeArrayDisplay}}"
+  range-key="{{rangeKey}}"
+  disabled="{{isDisabled}}"
+>
+  <view class="picker {{size}} {{isBordered ? 'bordered' : ''}} {{isDisabled ? 'disabled' : ''}} {{customClass}}" style="{{customStyle}}" wx:if="{{!isUseSlot}}">
+    <text class="placeholder" wx:if="{{placeholder && date === ''}}">{{placeholder}}</text>
+    <text>{{date}}</text>
+    <view class="picker-actions">
+      <icon name="close-circle" color="#999" catchtap="reset" custom-style="margin-right:5px;" wx:if="{{isResetable && date !== ''}}"></icon>
+      <icon name="arrow-down" size="mini" color="#999"></icon>
+    </view>
+  </view>
+  <slot wx:else></slot>
+</picker>

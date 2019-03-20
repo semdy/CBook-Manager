@@ -1,0 +1,190 @@
+<style lang="less">
+  @import '../../styles/mixins/common';
+  @import '../../styles/mixins/ellipsis';
+
+  page {
+    height: 100%;
+  }
+
+  .page-wrap {
+    padding: 15px;
+  }
+
+  .box-title {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .book-label {
+    color: #999;
+  }
+
+  .book-action {
+    padding: 8px;
+    margin: -8px;
+  }
+
+  .action-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 50px;
+    background-color: #fff;
+    box-shadow: 0 -8px 18px rgba(0,0,0,.04);
+    .flex();
+  }
+
+  .action-button {
+    .g-gradient(50%);
+    .flex-center();
+    color: #fff;
+    font-size: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+    flex: 1;
+
+    &:active {
+      .g-darken-gradient(50%);
+    }
+
+    &.disabled {
+      color: #666;
+      background: @color-disabled;
+      pointer-events: none;
+    }
+  }
+
+  .float-action-bar {
+    position: fixed;
+    right: 20px;
+    bottom: 100px;
+  }
+
+  .float-button {
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 50%;
+    box-shadow: 0 0 16px rgba(8,175,254,.4);
+    background-color: #fdfdfd;
+
+    &:active {
+      background-color: darken(#fdfdfd, 10%);
+    }
+
+    > text {
+      display: inline-block;
+      width: 2.5em;
+      height: 2.5em;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.2;
+    }
+
+    &.primary {
+      color: #fff;
+      background-color: @gcolor;
+
+      &:active {
+        background-color: darken(@gcolor, 10%);
+      }
+    }
+  }
+</style>
+
+<template>
+  <view class="page-wrap">
+    <view class="box-title" wx:if="{{!!boxCode}}">盒子编码: {{boxCode}}</view>
+    <repeat for="{{bookList}}" key="index">
+      <list-item show-arrow="false">
+        <view class="book-item flex-between">
+          <view class="book-main">
+            <text class="book-label">图书编码：</text>
+            <text class="book-code">{{item}}</text>
+          </view>
+          <view class="book-action" @tap="deleteBook({{item}})">删除</view>
+        </view>
+      </list-item>
+    </repeat>
+    <view class="float-action-bar">
+      <view class="float-button" @tap="scanBox">
+        <text>扫描盒子</text>
+      </view>
+      <view class="float-button primary" @tap="scanBarcode">
+        <text>扫描图书</text>
+      </view>
+    </view>
+
+    <view class="action-bar">
+      <view
+        class="action-button"
+        :class="{'disabled': !boxCode || bookList.length === 0}"
+        @tap="submit"
+      >
+        上架到书柜({{bookList.length}})
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import fetch from '../../service/fetch'
+  import { toast, confirm } from '../../utils/util'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '星月童书管理',
+      usingComponents: {
+        'btn': '/components/button/index',
+        'list-item': '/components/list-item/index'
+      }
+    }
+
+    data = {
+      boxCode: '',
+      bookList: []
+    }
+
+    methods = {
+      async scanBarcode () {
+        const { result } = await wepy.scanCode()
+        const isExist = this.bookList.find(item => item === result)
+        if (isExist) {
+          toast.error('该书已经扫描过')
+        } else {
+          this.bookList.push(result)
+          this.$apply()
+        }
+      },
+      async scanBox () {
+        const { result } = await wepy.scanCode()
+        this.boxCode = result
+        this.$apply()
+      },
+      async deleteBook(code) {
+        const isOk = await confirm('确定要删除吗?')
+        if (isOk) {
+          this.bookList = this.bookList.filter(item => item !== code)
+          this.$apply()
+        }
+      },
+      async submit () {
+        try {
+          await fetch.post('/tools/book/case/cell',
+            {
+              key: 'bcb2530fbf8452d883c2fe0788bd9c0a',
+              cellCode: this.boxCode,
+              bookCodeList: this.bookList
+            })
+          this.boxCode = ''
+          this.bookList = []
+          this.$apply()
+          toast.success('添加成功')
+        } catch (e) {
+        }
+      }
+    }
+  }
+</script>

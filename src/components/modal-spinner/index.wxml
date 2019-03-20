@@ -1,0 +1,5 @@
+<view class="modal-spinner {{customClass}}" hidden="{{!visible}}" style="{{customStyle}}">
+  <view class="modal-spinner-bd {{size}}">
+    <spinner size="{{size}}"></spinner>
+  </view>
+</view>

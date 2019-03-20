@@ -1,0 +1,24 @@
+<view
+ class="list-item {{isShowArrow ? 'enabled' : ''}} {{customClass}}"
+ style="{{customStyle}}">
+  <icon
+    wx:if="{{icon}}"
+    name="{{icon}}"
+    size="{{iconSize}}"
+    custom-style="margin-right: 5px;"
+  >
+  </icon>
+  <view class="list-item-bd {{isBordered ? 'bordered' : ''}}">
+    <view class="list-item-content">
+      <slot></slot>
+    </view>
+    <icon
+      name="arrow-right"
+      color="#bbb"
+      size="17px"
+      custom-style="margin-left: 5px;"
+      wx:if="{{isShowArrow}}"
+    >
+    </icon>
+  </view>
+</view>

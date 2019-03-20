@@ -1,0 +1,57 @@
+@import "../../styles/mixins/common";
+
+.checkbox {
+  display: inline-block;
+  border: 1px solid @color-border;
+  background-color: #fff;
+  border-radius: 50%;
+  vertical-align: middle;
+  transition: background-color .2s ease;
+
+  &.square {
+    border-radius: 0;
+  }
+
+  &.checked {
+    position: relative;
+    background-color: @gcolor;
+    border: none;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 50%;
+      height: 25%;
+      border-style: solid;
+      border-color: #fff;
+      border-width: 0 0 2px 2px;
+      transform: translate(-50%, -70%) rotate(-45deg);
+    }
+  }
+
+  &.large {
+    width: 30px;
+    height: 30px;
+  }
+
+  &.normal {
+    width: 18px;
+    height: 18px;
+  }
+
+  &.small {
+    width: 15px;
+    height: 15px;
+  }
+
+  &.readonly {
+    pointer-events: none;
+  }
+
+  &.disabled {
+    opacity: .7;
+    pointer-events: none;
+  }
+}

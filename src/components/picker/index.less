@@ -1,0 +1,49 @@
+@import "../../styles/mixins/common";
+
+.picker {
+  flex: 1;
+  width: 100%;
+  padding: 6px 12px;
+  font-size: 14px;
+  background-color: #fff;
+  box-sizing: border-box;
+  .flex-v-center();
+  justify-content: space-between;
+
+  &:active {
+    background-color: @color-active;
+  }
+
+  &.bordered {
+    border: .5px solid @border-color;
+    border-radius: 4px;
+  }
+
+  &.disabled {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  &.large {
+    height: @large;
+    font-size: 16px;
+  }
+
+  &.normal {
+    height: @normal;
+  }
+
+  &.small {
+    height: @small;
+  }
+
+  .placeholder {
+    color: #999;
+    white-space: nowrap;
+  }
+
+  .picker-actions {
+    white-space: nowrap;
+    margin-left: 5px;
+  }
+}

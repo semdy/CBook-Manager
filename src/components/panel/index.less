@@ -1,0 +1,35 @@
+@import "../../styles/mixins/common";
+@import "../../styles/mixins/hairline";
+
+.panel {
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+.panel-title {
+  font-size: 15px;
+  font-weight: bold;
+
+  &:after {
+    .hairline-bottom();
+  }
+}
+
+.panel-body {
+  padding: 10px 12px;
+}
+
+.panel-footer {
+  &:after {
+    .hairline-top();
+  }
+}
+
+.panel-title,
+.panel-footer {
+  position: relative;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
